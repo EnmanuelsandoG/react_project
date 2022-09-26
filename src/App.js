@@ -1,7 +1,19 @@
 import React from "react";
 
 const App = () => {
-  return <h1>Hola Mundo</h1>
-}
+  return (
+    <>
+      <header>
+        <h1>Header</h1>
+      </header>
+      <main>
+        <h1>Main</h1>
+      </main>
+      <footer>
+        <h1>Footer</h1>
+      </footer>
+    </>
+  );
+};
 
-export default App
+export default App;
