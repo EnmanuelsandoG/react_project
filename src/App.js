@@ -1,17 +1,10 @@
 import React from "react";
+import Navbar from "./Components/Navbar/Navbar";
 
 const App = () => {
   return (
     <>
-      <header>
-        <h1>Header</h1>
-      </header>
-      <main>
-        <h1>Main</h1>
-      </main>
-      <footer>
-        <h1>Footer</h1>
-      </footer>
+    <Navbar/>
     </>
   );
 };
