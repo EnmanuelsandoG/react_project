@@ -1,34 +1,48 @@
 import React, { useState } from "react";
 import { Button } from "@mui/material";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
+export const ItemCount = ({ stock, initial, onAdd }) => {
 
-const ItemCount = ({stock, initial, onAdd}) => {
-    const [count, setCount] =  useState(initial);
+  const [count, setCount] = useState(initial);
 
-    const subtract = () => {
-        if(count > 1){
-            setCount(count - 1);
-        }
+  const subtract = () => {
+    if (count > 1) {
+      setCount(count - 1);
     }
+  };
 
-    const add = () => {
-        if(count < stock){
-            setCount(count + 1);
-        }
+  const add = () => {
+    if (count < stock) {
+      setCount(count + 1);
     }
+  };
 
-    function addToCart() {
-        onAdd(count);
-    }
+  function addToCart() {
+    onAdd(count);
+  }
 
-    return (
+  return (
     <>
+      <div style={style.countBox}>
         <Button onClick={subtract}>-</Button>
         <h2>{count}</h2>
         <Button onClick={add}>+</Button>
-        <Button disabled={stock === 0} onClick={addToCart}>Agregar al Carrito</Button>
+      </div>
+      <Button disabled={stock === 0} onClick={addToCart} variant="outlined">
+        <span>
+        {stock === 0 ? 'No tenemos Stock':'Agregar al carrito'}
+        </span>
+        <AddShoppingCartIcon />
+      </Button>
     </>
-    );
+  );
 };
 
-export default ItemCount; 
+const style = {
+  countBox: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+};

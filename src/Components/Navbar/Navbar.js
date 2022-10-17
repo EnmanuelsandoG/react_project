@@ -7,7 +7,7 @@ import CartWidget from "../CartWidget/CartWidget";
 
 export const Navbar = () => {
   return (
-    <Box style={style.Navbar} sx={{ flexGrow: 1 }}>
+    <Box style={style.Navbar} sx={{ flexGrow: 1, backgroundColor: '#757575'}} >
       <img style={style.logo} src={LogoKarbonAmarillo} alt="Logo de tienda" />
       <ButtonGroup
         color="inherit"
