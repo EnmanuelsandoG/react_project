@@ -1,36 +1,56 @@
 import React from 'react'
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import {CardContent,CardMedia,Typography,Button,CardActionArea,CardActions,} from "@mui/material";
 
 
 const Item = ({product}) => {
 
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ maxWidth: 345 }} style={styles.container}>
+    <CardActionArea>
+      <CardMedia
+        component="img"
+        width="140"
+        image={`/products/${product.image}`}
+        alt={product.title}
+      />
       <CardContent>
-      <img src={`/products/${product.productImg}`} alt={product.title} style={style.img} />
-        <Typography variant="h5" component="div">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          style={styles.title}
+        >
           {product.title}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <Typography variant="body2" color="text.secondary">
           ${product.price}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Ver mas</Button>
-      </CardActions>
-    </Card>
+    </CardActionArea>
+    <CardActions>
+      <Button size="small" color="primary">
+        Ver Detalles
+      </Button>
+    </CardActions>
+  </Card>
   );
-}
-
-const style = {
-
-  img: {
-    width: 250,
-  }
-}
+  };
+  
+  const styles = {
+  container: {
+    width: window.innerHeight > 900 ? "25%" : "90%",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 20,
+    background: "linear-gradient(99deg, rgba(255,253,193,1) 0%, rgba(255,220,0,1) 100%)" ,
+  },
+  title: {
+    textOverflow: "ellipsis",
+    overflow: "hidden",
+    height: 100,
+  },
+  };
 
 export default Item;
