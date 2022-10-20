@@ -12,7 +12,7 @@ export const ItemDetailContainer = ({ greeting }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await fetch("https://api.escuelajs.co/api/v1/products" + id)
+        const res = await fetch("https://api.escuelajs.co/api/v1/products/" + id)
         const data = await res.json();
         setProduct(data);
       } catch {
