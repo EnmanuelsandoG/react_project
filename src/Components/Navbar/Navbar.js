@@ -1,25 +1,42 @@
 import React from "react";
 import LogoKarbonAmarillo from "../../assets/LogoKarbonAmarillo.png";
 import Box from "@mui/material/Box";
-import { Button } from "@mui/material";
 import { ButtonGroup } from "@mui/material";
 import CartWidget from "../CartWidget/CartWidget";
+import { Link, NavLink } from "react-router-dom";
 
 export const Navbar = () => {
+
+  const categorias = [
+    { nombre: "Ropa", id: 0, ruta: "/categoria/Ropa" },
+    { nombre: "Electronicos", id: 1, ruta: "/categoria/Electronicos" },
+    { nombre: "Muebles", id: 2, ruta: "/categoria/Muebles" },
+    { nombre: "Zapatos", id: 3, ruta: "/categoria/Zapatos" },
+    { nombre: "Otros", id: 4, ruta: "/categoria/Otros" },
+  ];
+
+
   return (
-    <Box style={style.Navbar} sx={{ flexGrow: 1, backgroundColor: '#757575'}} >
+    <Box style={style.Navbar} sx={{ flexGrow: 1}} >
+      <Link to="/">
       <img style={style.logo} src={LogoKarbonAmarillo} alt="Logo de tienda" />
+      </Link>
       <ButtonGroup
         color="inherit"
         variant="text"
         aria-label="text button group"
       >
-        <Button>Todos Los Productos</Button>
-        <Button>Carnes</Button>
-        <Button>Cervezas</Button>
-        <Button>Cooking</Button>
+        {categorias.map((categoria) => {
+          return (
+            <NavLink key={categoria.id} style={style.categoria} to={categoria.ruta}>
+              {categoria.nombre}
+            </NavLink>
+          );
+        })}
       </ButtonGroup>
-      <CartWidget />
+        <Link to="/Cart">
+        <CartWidget />
+        </Link>
     </Box>
   );
 };
@@ -38,11 +55,15 @@ const style = {
     width: "100%",
   },
   logo: {
-    height: "80%",
+    height: "3rem",
     margin: "10px",
   },
   a: {
     margin: "10px",
+  },
+  categoria: {
+    margin: 15,
+    color: "black",
   },
 };
 

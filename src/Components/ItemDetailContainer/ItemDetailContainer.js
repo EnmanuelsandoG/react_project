@@ -1,34 +1,33 @@
 import React, { useEffect, useState } from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
-import { products } from "../ItemListContainer/ItemListContainer";
+import { useParams } from "react-router-dom";
 
-const getProducts = new Promise ((resolve, reject )=> {
-    setTimeout (() => {
-        resolve(products);
-    }, 2000);
-});
 
 export const ItemDetailContainer = ({ greeting }) => {
-  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const { id } = useParams();
+
   useEffect(() => {
-    getProducts
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch((error) => {
-        console.log("salio todo mal");
-        console.log(error);
-      })
-      .finally(setLoading(false));
-  }, []);
+    const getProducts = async () => {
+      try {
+        const res = await fetch("https://api.escuelajs.co/api/v1/products" + id)
+        const data = await res.json();
+        setProduct(data);
+      } catch {
+        console.log("error");
+      } finally {
+        setLoading(false);
+      }
+    };
+    getProducts();
+  }, [id]);
 
   return (
     <>
       <h1>{greeting}</h1>
-      {<>{loading ? <h1>Cargando...</h1> : <ItemDetail products={products} />}</>}
+      {<>{loading ? <h1>Cargando...</h1> : <ItemDetail product={product} />}</>}
     </>
   );
 };
-
