@@ -11,7 +11,7 @@ export const ItemListContainer = ({ greeting }) => {
   const { id } = useParams();
 
   const URL_BASE = 'https://api.escuelajs.co/api/v1/products'
-  const URL_CAT = `${URL_BASE}/category/${id}`
+  const URL_CAT = `${URL_BASE}/categories/${id}`
 
   useEffect(() => {
     const getProducts = async () => {
