@@ -52,8 +52,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     margin: 20,
-    background:
-      "linear-gradient(99deg, rgba(255,253,193,1) 0%, rgba(255,220,0,1) 100%)",
+    background:"white",
   },
   title: {
     textOverflow: "ellipsis",

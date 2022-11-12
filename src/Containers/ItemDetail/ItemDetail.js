@@ -1,5 +1,5 @@
 import React from "react";
-import { ItemCount } from "../ItemCount/ItemCount";
+import { ItemCount } from "../../Components/ItemCount/ItemCount";
 import { Link } from "react-router-dom";
 
 const ItemDetail = ({ product }) => {

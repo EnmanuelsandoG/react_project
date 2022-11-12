@@ -35,7 +35,7 @@ export const Navbar = () => {
         })}
       </ButtonGroup>
         <Link to="/Cart">
-        <CartWidget />
+        <CartWidget/>
         </Link>
     </Box>
   );
@@ -53,6 +53,7 @@ const style = {
     justifyContent: "space-between",
     height: 40,
     width: "100%",
+    border: "2px solid",
   },
   logo: {
     height: "3rem",

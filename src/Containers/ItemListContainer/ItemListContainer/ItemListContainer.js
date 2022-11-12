@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { ItemCount } from "../ItemCount/ItemCount";
+import { ItemCount } from "../../../Components/ItemCount/ItemCount";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { db } from "../../../Firebase/firebase" 
 
 
 export const ItemListContainer = ({ greeting }) => {
