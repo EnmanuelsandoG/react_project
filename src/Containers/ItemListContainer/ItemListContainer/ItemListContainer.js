@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { ItemCount } from "../../../Components/ItemCount/ItemCount";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 import { getDocs, collection, query, where } from "firebase/firestore";
@@ -12,35 +11,34 @@ export const ItemListContainer = ({ greeting }) => {
 
   const { id } = useParams();
 
-  const URL_BASE = 'https://api.escuelajs.co/api/v1/products'
-  const URL_CAT = `${URL_BASE}/categories/${id}`
+  const URL_BASE = 'https://api.escuelajs.co/api/v1/products';
+  const URL_CAT = `${URL_BASE}/categories/${id}`;
+
+  const productCollection = collection(db, "productos");
+  const q = query(productCollection, where('categoria', '==', '8bdxgcNSpGRzzAwmIFCG' ))
 
   useEffect(() => {
-    const getProducts = async () => {
-      try{
-        const res = await fetch(id ? URL_CAT : URL_BASE);
-        const data = await res.json();
-        setProducts(data);
-      } catch {
-        console.log("error");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getProducts();
+    getDocs(productCollection)
+    .then((result) => {
+      const listProducts = result.docs.map((item) => {
+        return {
+          ...item.data(),
+          id: item.id,
+        };
+      });
+      setProducts(listProducts);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(setLoading(false));
     
   }, [id, URL_BASE, URL_CAT]);
-
-  const onAdd = (count) => {
-    console.log(`El usuario quiere agregar ${count} productos`);
-  };
 
   return (
     <>
       <h1>{greeting}</h1>
       {<>{loading ? <h1>Cargando...</h1> : <ItemList products={products} />}</>}
-      <ItemCount stock={10} initial={1} onAdd={onAdd} />
     </>
   );
 };

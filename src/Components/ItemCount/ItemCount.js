@@ -18,10 +18,6 @@ export const ItemCount = ({ stock, initial, onAdd }) => {
     }
   };
 
-  function addToCart() {
-    onAdd(count);
-  }
-
   return (
     <>
       <div style={style.countBox}>
@@ -29,7 +25,7 @@ export const ItemCount = ({ stock, initial, onAdd }) => {
         <h2>{count}</h2>
         <Button onClick={add}>+</Button>
       </div>
-      <Button disabled={stock === 0} onClick={addToCart} variant="outlined">
+      <Button disabled={stock === 0} onClick={()=>onAdd(count)} variant="outlined">
         <span>
         {stock === 0 ? 'No tenemos Stock':'Agregar al carrito'}
         </span>

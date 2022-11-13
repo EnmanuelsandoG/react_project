@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { ItemCount } from "../../Components/ItemCount/ItemCount";
 import { Link } from "react-router-dom";
+import { Context } from "../../Context/CustomContext";
 
 const ItemDetail = ({ product }) => {
 
@@ -32,7 +33,7 @@ const ItemDetail = ({ product }) => {
         <Link to={'/cart'}>
           <button>Finalizar Compra</button>
         </Link>
-      )}
+      )}\
     </div>
   );
 };

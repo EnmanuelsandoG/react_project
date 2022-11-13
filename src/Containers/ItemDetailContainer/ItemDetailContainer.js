@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
+import { getDoc, collection, doc } from "firebase/firestore";
+import { db } from "../../Firebase/firebase";
 
 
 export const ItemDetailContainer = ({ greeting }) => {
@@ -10,19 +12,21 @@ export const ItemDetailContainer = ({ greeting }) => {
   const { id } = useParams();
 
   useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const res = await fetch("https://api.escuelajs.co/api/v1/products/" + id)
-        const data = await res.json();
-        setProduct(data);
-      } catch {
-        console.log("error");
-      } finally {
-        setLoading(false);
-      }
-    };
-    getProducts();
-  }, [id]);
+    const productCollection = collection(db, "productos");
+    const refDoc = doc(productCollection, id);
+
+    getDoc(refDoc)
+      .then((result) => {
+        setProduct({
+          id: result.id,
+          ...result.data(),
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(setLoading(false));
+    },[id]);
 
   return (
     <>
