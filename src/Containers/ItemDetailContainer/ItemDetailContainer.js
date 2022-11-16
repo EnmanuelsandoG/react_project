@@ -12,6 +12,7 @@ export const ItemDetailContainer = ({ greeting }) => {
   const { id } = useParams();
 
   useEffect(() => {
+
     const productCollection = collection(db, "productos");
     const refDoc = doc(productCollection, id);
 
@@ -26,7 +27,16 @@ export const ItemDetailContainer = ({ greeting }) => {
         console.log(error);
       })
       .finally(setLoading(false));
+
+    // const getFirebase = async () => {
+    //   const db = await initFirebase();
+    //   console.log(db);
+    // }
+
+    // getFirebase();
+  
     },[id]);
+
 
   return (
     <>

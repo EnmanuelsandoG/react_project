@@ -7,10 +7,10 @@ import { Link, NavLink } from "react-router-dom";
 
 export const Navbar = () => {
 
-  const categorias = [
-    { nombre: "Carnes", id: 0, ruta: "/categoria/Carnes" },
-    { nombre: "Cervezas", id: 1, ruta: "/categoria/Cervezas" },
-    { nombre: "Cooking", id: 2, ruta: "/categoria/Cooking" },
+  const categories = [
+    { nombre: "Carnes", id: 0, ruta: "/category/Carnes" },
+    { nombre: "Cervezas", id: 1, ruta: "/category/Cervezas" },
+    { nombre: "Cooking", id: 2, ruta: "/category/Cooking" },
   ];
 
 
@@ -24,10 +24,10 @@ export const Navbar = () => {
         variant="text"
         aria-label="text button group"
       >
-        {categorias.map((categoria) => {
+        {categories.map((category) => {
           return (
-            <NavLink key={categoria.id} style={style.categoria} to={categoria.ruta}>
-              {categoria.nombre}
+            <NavLink key={category.id} style={style.categoria} to={category.ruta}>
+              {category.nombre}
             </NavLink>
           );
         })}

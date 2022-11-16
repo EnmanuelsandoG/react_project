@@ -12,10 +12,10 @@ export const ItemListContainer = ({ greeting }) => {
   const { id } = useParams();
 
   const URL_BASE = 'https://api.escuelajs.co/api/v1/products';
-  const URL_CAT = `${URL_BASE}/categories/${id}`;
+  const URL_CAT = `${URL_BASE}/category/${id}`;
 
   const productCollection = collection(db, "productos");
-  const q = query(productCollection, where('categoria', '==', '8bdxgcNSpGRzzAwmIFCG' ))
+  const q = query(productCollection, where('category', '==', '8bdxgcNSpGRzzAwmIFCG' ))
 
   useEffect(() => {
     getDocs(productCollection)
