@@ -6,18 +6,16 @@ import { CartWidget } from "../CartWidget/CartWidget";
 import { Link, NavLink } from "react-router-dom";
 
 export const Navbar = () => {
-
   const categories = [
-    { nombre: "Carnes", id: 0, ruta: "/category/Carnes" },
-    { nombre: "Cervezas", id: 1, ruta: "/category/Cervezas" },
-    { nombre: "Cooking", id: 2, ruta: "/category/Cooking" },
+    { nombre: "Carnes", id: 0, ruta: "/category/carnes" },
+    { nombre: "Cervezas", id: 1, ruta: "/category/cervezas" },
+    { nombre: "Cooking", id: 2, ruta: "/category/cooking" },
   ];
 
-
   return (
-    <Box style={style.Navbar} sx={{ flexGrow: 1}} >
+    <Box style={style.Navbar} sx={{ flexGrow: 1 }}>
       <Link style={style.logo} to="/">
-      <img style={style.logo} src={LogoKarbonAmarillo} alt="Logo de tienda" />
+        <img style={style.logo} src={LogoKarbonAmarillo} alt="Logo de tienda" />
       </Link>
       <ButtonGroup
         color="inherit"
@@ -26,29 +24,31 @@ export const Navbar = () => {
       >
         {categories.map((category) => {
           return (
-            <NavLink key={category.id} style={style.categoria} to={category.ruta}>
+            <NavLink
+              key={category.id}
+              style={style.categoria}
+              to={category.ruta}
+            >
               {category.nombre}
             </NavLink>
           );
         })}
       </ButtonGroup>
-        <Link to="/Cart">
-        <CartWidget/>
-        </Link>
+      <Link to="/Cart">
+        <CartWidget />
+      </Link>
     </Box>
   );
 };
 
 export default Navbar;
 
-
-const viewport ={
+const viewport = {
   width: document.documentElement.clientWidth,
-  height: document.documentElement.clientHeight
-}
+  height: document.documentElement.clientHeight,
+};
 
 const style = {
-
   Navbar: {
     display: viewport.width > 900 ? "flex" : "none",
     alignItems: "center",
@@ -68,4 +68,3 @@ const style = {
     color: "black",
   },
 };
-

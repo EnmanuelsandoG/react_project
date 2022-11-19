@@ -2,38 +2,50 @@ import React, { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 import { getDocs, collection, query, where } from "firebase/firestore";
-import { db } from "../../../Firebase/firebase" 
-
+import { db } from "../../../Firebase/firebase";
 
 export const ItemListContainer = ({ greeting }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
-
-  const URL_BASE = 'https://api.escuelajs.co/api/v1/products';
-  const URL_CAT = `${URL_BASE}/category/${id}`;
-
-  const productCollection = collection(db, "productos");
-  const q = query(productCollection, where('category', '==', '8bdxgcNSpGRzzAwmIFCG' ))
+  const productsCollection = collection(db, "productos");
 
   useEffect(() => {
-    getDocs(productCollection)
-    .then((result) => {
-      const listProducts = result.docs.map((item) => {
-        return {
-          ...item.data(),
-          id: item.id,
-        };
-      });
-      setProducts(listProducts);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-    .finally(setLoading(false));
-    
-  }, [id, URL_BASE, URL_CAT]);
+    setLoading(true);
+
+    console.log(id);
+
+    if (id) {
+      const q = query(productsCollection, where("category", "==", id));
+      console.log(q);
+      getDocs(q)
+        .then((snapshot) => {
+          setProducts(
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+          );
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      getDocs(productsCollection)
+        .then((snapshot) => {
+          setProducts(
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+          );
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  }, [id]);
 
   return (
     <>

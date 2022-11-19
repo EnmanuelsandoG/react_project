@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
-import { getDoc, collection, doc } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../Firebase/firebase";
-
 
 export const ItemDetailContainer = ({ greeting }) => {
   const [product, setProduct] = useState([]);
@@ -12,16 +11,11 @@ export const ItemDetailContainer = ({ greeting }) => {
   const { id } = useParams();
 
   useEffect(() => {
-
-    const productCollection = collection(db, "productos");
-    const refDoc = doc(productCollection, id);
+    const refDoc = doc(db, "productos", id);
 
     getDoc(refDoc)
       .then((result) => {
-        setProduct({
-          id: result.id,
-          ...result.data(),
-        });
+        setProduct({...result.data(), id: result.id});
       })
       .catch((error) => {
         console.log(error);
@@ -34,9 +28,7 @@ export const ItemDetailContainer = ({ greeting }) => {
     // }
 
     // getFirebase();
-  
-    },[id]);
-
+  }, [id]);
 
   return (
     <>

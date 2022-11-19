@@ -35,7 +35,7 @@ const Item = ({ product }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-      <Link to={"/producto/" + product.id}>
+      <Link to={"/product/" + product.id}>
         <Button size="small" color="primary">
           Ver Detalles
         </Button>
