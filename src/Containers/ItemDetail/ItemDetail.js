@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { ItemCount } from "../../Components/ItemCount/ItemCount";
 import { Link } from "react-router-dom";
 import { Context } from "../../Context/CustomContext";
+import { Button } from "@mui/material";
 
 const ItemDetail = ({ product }) => {
   const [isPressedButton, setIsPressedButton] = useState(false);
@@ -31,7 +32,7 @@ const ItemDetail = ({ product }) => {
           <ItemCount stock={stock} initial={1} onAdd={onAdd} />
         ) : (
           <Link to={"/cart"}>
-            <button>Finalizar Compra</button>
+            <Button>Finalizar Compra</Button>
           </Link>
         )}
       </div>

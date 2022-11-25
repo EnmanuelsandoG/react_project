@@ -1,15 +1,54 @@
-.red {
-    color: red;
+.cart-container {
+    min-height: 20px;
+    background-color: black;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    color: #FF7F11
 }
 
-.green {
-    color: green
+.img-item-cart {
+    max-width: 100px;
+    max-height: 100px;
+
 }
 
-.blue {
-    color: blue;
+.btn-agregar-cart {
+    border: none;
+    background-color: #FF7F11;
+    border-radius: 5px;
+    color: black;
+    margin: 15px;
+    margin-top: 30px;
 }
 
-.tamanio {
-    font-size: 50px;
+.btn-agregar-cart:hover{
+    background: #a7cb68
+}
+
+.aviso-cart {
+    text-align: center;
+}
+
+@media (max-width: 500px) {
+    .btn-agregar-cart {
+        font-size: 12px;
+    }
+
+    .texto-nombre-cart{
+        font-size: 12px;
+    }
+
+    .aviso-cart {
+        font-size: 20px;
+    }
+
+    .img-item-cart {
+        max-width: 60px;
+        max-height: 60px;
+    
+    }
+    
+
+
 }

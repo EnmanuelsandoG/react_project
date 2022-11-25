@@ -5,7 +5,9 @@ import { ItemListContainer } from "./Containers/ItemListContainer/ItemListContai
 import { ItemDetailContainer } from "./Containers/ItemDetailContainer/ItemDetailContainer";
 import { Cart } from "./Containers/CartView/Cart";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { CustomProvider } from "./Context/CustomContext";
+import CustomProvider  from "./Context/CustomContext";
+import Footer from "./Components/Footer/Footer";
+import Checkout from "./Components/Checkout/Checkout";
 
 const App = () => {
   const mensaje = "Bienvenido a tu tienda preferida!";
@@ -21,7 +23,9 @@ const App = () => {
           <Route path="/product/:id" element={<ItemDetailContainer />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<ItemListContainer />} />
+          <Route path="checkout" element={<Checkout/>}/>
         </Routes>
+        <Footer/>
       </CustomProvider>
     </BrowserRouter>
   );
