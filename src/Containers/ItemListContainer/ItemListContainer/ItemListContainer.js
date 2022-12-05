@@ -14,11 +14,8 @@ export const ItemListContainer = ({ greeting }) => {
   useEffect(() => {
     setLoading(true);
 
-    console.log(id);
-
     if (id) {
       const q = query(productsCollection, where("category", "==", id));
-      console.log(q);
       getDocs(q)
         .then((snapshot) => {
           setProducts(

@@ -1,6 +1,6 @@
 import { addDoc, collection } from 'firebase/firestore';
 import { useContext, useState } from 'react';
-import { Button } from '@mui/material';
+import { Button , CircularProgress } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
@@ -14,7 +14,7 @@ export default function Checkout() {
     const [recibida, setRecibida] = useState(false)
     const [comprador, setComprador] = useState('')
     const [orderId, setOrderID] = useState('')
-    const { getItemPrice, cart, emptyCart } = useContext(Context)
+    const { getItemPrice, cart, clear } = useContext(Context)
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const ordercollection = collection(db, 'orders')
@@ -34,8 +34,7 @@ export default function Checkout() {
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
-            progress: undefined,
-            theme: "dark"
+            progress: undefined
         });
 
         addDoc(ordercollection, order).then(({ id }) => {
@@ -50,7 +49,7 @@ export default function Checkout() {
             setRecibida(true)
         })
         e.target.reset()
-        emptyCart()
+        clear()
 
 
     }
@@ -101,7 +100,7 @@ export default function Checkout() {
                     <ToastContainer />
                 </>
             )
-                : !recibida ? <h1>Cargando...</h1> : (
+                : !recibida ? <CircularProgress color="inherit" /> : (
                     <div className='compra-finalizada container-fluid d-flex flex-column align-items-center'>
                         <h1 className='text-center'>Su compra se ha realizado con Exito</h1>
                         <h2 className='text-comprador'>Muchas Gracias {comprador}</h2>

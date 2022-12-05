@@ -5,7 +5,7 @@ import "./Cart.css";
 import { Table, Button } from "@mui/material";
 
 export const Cart = () => {
-  const { qty, total, emptyCart, cart, deleteItem } = useContext(Context)
+  const { qty, total, clear, cart, deleteItem } = useContext(Context)
 
   return (
       <>
@@ -54,7 +54,7 @@ export const Cart = () => {
                               </tbody>
                           </Table>
                           <div className='container-fluid d-flex justify-content-center'>
-                              {qty > 0 ? <button className='btn-agregar-cart' onClick={() => { emptyCart() }}>Borrar Carrito</button> : <p></p>}
+                              {qty > 0 ? <Button className='btn-agregar-cart' onClick={() => { clear() }}>Borrar Carrito</Button> : <p></p>}
                               <Link to={'/home'}> <Button className='btn-agregar-cart'>Agregar Productos</Button></Link>
                               {qty > 0 ? <Link to={'/checkout'}> <Button className='btn-agregar-cart'>Terminar Compra</Button></Link> : <p></p>}
                           </div>

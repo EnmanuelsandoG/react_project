@@ -2,19 +2,19 @@ import React, { createContext, useEffect, useState } from "react";
 
 export const Context = createContext();
 
-const { Provider } = Context
+const { Provider } = Context;
 
 const CustomProvider = ({ children }) => {
-  
   const [cart, setCart] = useState([]);
   const [qty, setQty] = useState(0);
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    setQty(cart.reduce((total, item) => total + item.cantidad, 0))
-    setTotal(cart.reduce((total, item) => total + (item.cantidad * item.price), 0))
-  }, [])
-  
+    setQty(cart.reduce((total, item) => total + item.cantidad, 0));
+    setTotal(
+      cart.reduce((total, item) => total + item.cantidad * item.price, 0)
+    );
+  }, []);
 
   const addItem = (item, cantidad) => {
     if (IsInCart(item.id)) {
@@ -29,14 +29,14 @@ const CustomProvider = ({ children }) => {
       setCart([...cart, { ...item, cantidad }]);
     }
     setQty(qty + cantidad);
-    setTotal(total + (item.price * cantidad));
+    setTotal(total + item.price * cantidad);
   };
 
   const deleteItem = (id) => {
-    const found = cart.find(producto => producto.id === id);
+    const found = cart.find((producto) => producto.id === id);
     setCart(cart.filter((item) => item.id !== id));
-    setQty( qty - found.cantidad)
-    setTotal(total - (found.price * found.cantidad))
+    setQty(qty - found.cantidad);
+    setTotal(total - found.price * found.cantidad);
   };
 
   const IsInCart = (id) => cart.some((item) => item.id === id);
@@ -47,11 +47,27 @@ const CustomProvider = ({ children }) => {
     setTotal(0);
   };
 
+  const getItemPrice = () => {
+    return cart.reduce((acc, x) => (acc += x.qty * x.precio), 0);
+  };
+
+
   return (
-    <Provider value={{ cart, qty, total, addItem, deleteItem, clear, IsInCart }}>
+    <Provider
+      value={{
+        cart,
+        qty,
+        total,
+        addItem,
+        deleteItem,
+        clear,
+        IsInCart,
+        getItemPrice
+      }}
+    >
       {children}
     </Provider>
   );
 };
 
-export default CustomProvider
+export default CustomProvider;

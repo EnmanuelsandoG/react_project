@@ -1,6 +1,7 @@
 .cart-container {
     min-height: 20px;
-    background-color: black;
+    background-color: beige;
+    border: 2px solid black;
     color: white;
     margin-top: 10px;
     margin-bottom: 50px;
