@@ -6,7 +6,7 @@ Proyecto ficticio donde se desarrollo con React Js una pagina web dedicaba a la 
 
 Este proyecto se encuentra deployeado en Firebase, puedes ingresar y probarlo en el siguiente link:
 
-
+https://karbon-react.netlify.app/ 
 
 Si prefieres correrlo de manera local, seguí los siguientes pasos:
 
