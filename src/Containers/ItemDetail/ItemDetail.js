@@ -31,8 +31,8 @@ const ItemDetail = ({ product }) => {
         {!isPressedButton ? (
           <ItemCount stock={stock} initial={1} onAdd={onAdd} />
         ) : (
-          <Link to={"/cart"}>
-            <Button>Finalizar Compra</Button>
+          <Link style={{textDecoration: "none"}} to={"/cart"}>
+            <Button variant="contained" color="warning" size="small">Finalizar Compra</Button>
           </Link>
         )}
       </div>

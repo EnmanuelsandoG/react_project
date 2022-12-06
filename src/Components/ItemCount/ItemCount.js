@@ -21,11 +21,11 @@ export const ItemCount = ({ stock, initial, onAdd }) => {
   return (
     <>
       <div style={style.countBox}>
-        <Button onClick={subtract}>-</Button>
+        <Button style={{border: "solid 2px"}} variant="contained" color="warning" onClick={subtract}>-</Button>
         <h2>{count}</h2>
-        <Button onClick={add}>+</Button>
+        <Button style={{border: "solid 2px"}} variant="contained" color="warning" onClick={add}>+</Button>
       </div>
-      <Button disabled={stock === 0} onClick={()=>onAdd(count)} variant="outlined">
+      <Button variant="outlined" color="warning" disabled={stock === 0} onClick={()=>onAdd(count)} >
         <span>
         {stock === 0 ? 'No tenemos Stock':'Agregar al carrito'}
         </span>
@@ -40,5 +40,6 @@ const style = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+    margin: "0% 80% 0% 0%",
   },
 };

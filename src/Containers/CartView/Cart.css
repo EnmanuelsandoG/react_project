@@ -5,26 +5,25 @@
     color: white;
     margin-top: 10px;
     margin-bottom: 50px;
-    color: #FF7F11
+    color: black
+}
+
+.text-end {
+    text-align: end;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.space {
+    padding: 30px;
 }
 
 .img-item-cart {
     max-width: 100px;
     max-height: 100px;
 
-}
-
-.btn-agregar-cart {
-    border: none;
-    background-color: #FF7F11;
-    border-radius: 5px;
-    color: black;
-    margin: 15px;
-    margin-top: 30px;
-}
-
-.btn-agregar-cart:hover{
-    background: #a7cb68
 }
 
 .aviso-cart {

@@ -66,5 +66,6 @@ const style = {
   categoria: {
     margin: 15,
     color: "black",
+    textDecoration: "none",
   },
 };

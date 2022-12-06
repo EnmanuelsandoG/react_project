@@ -3,6 +3,7 @@ import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 import { getDocs, collection, query, where } from "firebase/firestore";
 import { db } from "../../../Firebase/firebase";
+import { CircularProgress } from '@mui/material';
 
 export const ItemListContainer = ({ greeting }) => {
   const [products, setProducts] = useState([]);
@@ -47,7 +48,7 @@ export const ItemListContainer = ({ greeting }) => {
   return (
     <>
       <h1>{greeting}</h1>
-      {<>{loading ? <h1>Cargando...</h1> : <ItemList products={products} />}</>}
+      {<>{loading ? <CircularProgress color="inherit" /> : <ItemList products={products} />}</>}
     </>
   );
 };

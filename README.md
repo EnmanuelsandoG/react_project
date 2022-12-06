@@ -1,4 +1,4 @@
-# Karbon Room. Ecommerce desarrollado on React
+# Karbon Ecommerce. Ecommerce desarrollado on React
     
 Proyecto ficticio donde se desarrollo con React Js una pagina web dedicaba a la venta de productos para la parrilla.
 
